@@ -1,0 +1,28 @@
+body {
+    text-align: center;
+    font-family: 'Nunito', sans-serif;
+}
+
+p {
+    font-size: 30px;
+}
+
+#diff {
+    font-size: 18px;
+    padding-top: 5%;
+    display: inline-flex;
+}
+
+#diff > * {
+    padding-left: 6px;
+}
+
+h1 {
+    font-size: 60px;
+    font-style: italic;
+    padding-top: 5%;
+}
+
+a {
+    text-decoration: none;
+}
