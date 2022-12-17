@@ -18,14 +18,28 @@ function generateWriteCode()
     code.innerHTML = "#" + hexa;
 }
 
+function generateRandomCode(x = "")
+{
+    for(let i = 0; i < 6; i++)
+    {
+        var z = parseInt((Math.random() * 16), 10) + 48;
+        if(z > 57)
+            z += 7;
+        x += String.fromCharCode(z);
+    }
+    return x;
+}
+
 function generateColors()
 {
     const index = parseInt((Math.random() * number)) + 1;
-
     for(let i = 0; i < number; i++)
     {
-        list.appendChild(document.createElement("a"));
-        /*i == index ? (list.style.backgroundColor = "#" + hexa, list.style.padding = "15px") : i++;
-        list.children*/
+        const element = document.createElement("div");
+        list.appendChild(element);
+        element.style.padding = "50px";
+        element.style.margin = "0 2%";
+        element.style.borderRadius = "50%";
+        i == index ? element.style.backgroundColor = "#" + hexa : element.style.backgroundColor = "#" + generateRandomCode();
     }
 }

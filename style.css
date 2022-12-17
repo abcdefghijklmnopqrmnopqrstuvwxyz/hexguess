@@ -9,7 +9,7 @@ p {
 
 #diff {
     font-size: 18px;
-    padding-top: 5%;
+    padding-top: 4%;
     display: inline-flex;
 }
 
@@ -21,6 +21,12 @@ h1 {
     font-size: 60px;
     font-style: italic;
     padding-top: 5%;
+}
+
+#hexlist {
+    padding: 2% 0;
+    display: inline-flex;
+    justify-content: center;
 }
 
 a {
