@@ -29,6 +29,12 @@ h1 {
     justify-content: center;
 }
 
+#hexlist > * {
+    padding: 50px;
+    margin: 0 2%;
+    border-radius: 50%;
+}
+
 a {
     text-decoration: none;
 }
