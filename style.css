@@ -15,6 +15,7 @@ p {
 
 #diff > * {
     padding-left: 6px;
+    color: black;
 }
 
 h1 {
@@ -27,11 +28,13 @@ h1 {
     padding: 2% 0;
     display: inline-flex;
     justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
 }
 
 #hexlist > * {
     padding: 50px;
-    margin: 0 2%;
+    margin: 0 1%;
     border-radius: 50%;
 }
 

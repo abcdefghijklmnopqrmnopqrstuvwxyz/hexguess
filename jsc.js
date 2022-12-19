@@ -2,6 +2,7 @@ const code = document.getElementById("code");
 const list = document.getElementById("hexlist");
 let number = "";
 let hexa = "";
+let index = "";
 
 callMethods();
 
@@ -33,7 +34,7 @@ function generateRandomCode(x = "")
 function generateColors()
 {
     number = document.getElementsByTagName("strong")[0].textContent;
-    const index = parseInt((Math.random() * number)) + 1;
+    index = parseInt((Math.random() * number));
     for(let i = 0; i < number; i++)
     {
         const element = document.createElement("a");
@@ -47,20 +48,7 @@ function generateColors()
 
 function checkAnswer(clickedId)
 {
-    let list = [];
-    const color = document.getElementById(clickedId).style.backgroundColor;
-    let num = "";
-    for(let i = 0; i < color.length; i++)
-    {
-        isNaN(color.charAt(i)) ? num != "" ? (list.push(parseInt(num).toString(16)), num = "") : num : num += color.charAt(i);
-    }
-    list.forEach(element => {
-        num += element.toUpperCase();
-    });
-    console.log(num);
-    console.log(hexa);
-    num != hexa ? console.log("wrong") : console.log("right");
-    
+    clickedId == index ? console.log("right") : document.getElementById(clickedId).remove();
 }
 
 function removeChild()
