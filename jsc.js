@@ -1,5 +1,7 @@
 const code = document.getElementById("code");
 const list = document.getElementById("hexlist");
+const text = document.getElementById("answer");
+const button = document.getElementById("button");
 let number = "";
 let hexa = "";
 let index = "";
@@ -23,7 +25,7 @@ function generateRandomCode(x = "")
 {
     for(let i = 0; i < 6; i++)
     {
-        var z = parseInt((Math.random() * 16), 10) + 48;
+        let z = parseInt((Math.random() * 16), 10) + 48;
         if(z > 57)
             z += 7;
         x += String.fromCharCode(z);
@@ -48,7 +50,69 @@ function generateColors()
 
 function checkAnswer(clickedId)
 {
-    clickedId == index ? console.log("right") : document.getElementById(clickedId).remove();
+    const clicked = document.getElementById(clickedId)
+    clickedId == index ? rightAnswer() : wrongAnswer(clicked);
+}
+
+function resetText()
+{
+    text.innerHTML = "GUESS THE COLOR";
+    code.style.color = "#000000";
+    if(button.firstChild)
+        button.removeChild(button.firstChild);
+}
+
+function rightAnswer()
+{
+    text.innerHTML = "CORRECT!";
+    code.style.color = code.innerHTML;
+    const element = document.createElement("button");
+    element.innerHTML = "NEW GAME";
+    element.setAttribute("onclick", "callMethods()");
+    button.appendChild(element);
+    for(let i = 0; i < number; i++)
+    {
+        let colorBall = document.getElementById(i);
+        i != index ? (colorBall.style.backgroundColor = document.body.style.backgroundColor, colorBall.removeAttribute("href"), colorBall.removeAttribute("onclick")) : colorBall.removeAttribute("href"), colorBall.removeAttribute("onclick");
+    }
+}
+
+function wrongAnswer(clicked)
+{
+    let colorText = "" + clicked.style.backgroundColor;
+    let hex = "";
+    let a = "";
+    for(let i = 0; i < colorText.length; i++)
+    {
+        if(!isNaN(colorText.charAt(i)) && colorText.charAt(i) != "" && colorText.charAt(i) != " ")
+        {
+            a += colorText.charAt(i);
+        }
+        else
+        {
+            let x = parseInt(a).toString(16);
+            if(x != "NaN")
+            {
+                if(x.length == 2)
+                {
+                    hex += x;
+                }
+                else
+                {
+                    hex += 0 + x;
+                }
+            }
+            a = "";
+        }
+    }
+    const coloredElement = document.createElement("a");
+    coloredElement.innerHTML = "#" + hex.toUpperCase();
+    coloredElement.style.color = "#" + hex;
+    text.innerHTML = "TRY AGAIN. THAT COLOR WAS ";
+    text.appendChild(coloredElement);
+    clicked.style.backgroundColor = document.body.style.backgroundColor;
+    clicked.removeAttribute("href");
+    clicked.removeAttribute("onclick");
 }
 
 function removeChild()
@@ -63,6 +127,7 @@ function callMethods()
     removeChild();
     generateWriteCode();
     generateColors();
+    resetText();
 }
 
 
@@ -80,8 +145,6 @@ function diffClickEvent(clickedId)
     element.innerHTML = document.getElementById(clickedId).innerHTML;
     document.getElementById(clickedId).replaceWith(element);
     element.setAttribute("id", clickedId);
-    element.setAttribute("href", "#");
-    element.setAttribute("onClick", "diffClickEvent(this.id)");
 
     callMethods();
 }
